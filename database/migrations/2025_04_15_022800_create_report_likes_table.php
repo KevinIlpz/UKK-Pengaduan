@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('report_likes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('report_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+    
+            $table->unique(['report_id', 'user_id']); // agar tidak bisa like dua kali
         });
     }
+    
 
     /**
      * Reverse the migrations.

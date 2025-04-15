@@ -1,64 +1,70 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Staff;
 
+use App\Models\Report;
+use App\Models\ResponseProgress;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StaffDashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $staffProvince = Auth::user()->staff_province;
+
+        $reports = Report::where('province', $staffProvince)
+                         ->latest()
+                         ->paginate(10);
+
+        return view('dashboard.staff.staff', compact('reports'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function updateStatus(Request $request, Report $report)
     {
-        //
+        $request->validate([
+            'status' => 'required|in:PROSES,DITOLAK',
+        ]);
+
+        $report->status = $request->status;
+        $report->save();
+
+        if ($request->status === 'PROSES' && $request->has('redirect_to_detail')) {
+            return redirect()->route('staff.reports.show', $report)->with('success', 'Laporan diproses. Silakan tambahkan progress.');
+        }
+
+        return redirect()->back()->with('success', 'Status laporan berhasil diperbarui.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show(Report $report)
     {
-        //
+        $report->load(['user', 'progress.staff']);
+        return view('dashboard.staff.staff-detail', compact('report'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function storeProgress(Request $request, Report $report)
     {
-        //
+        $request->validate([
+            'description' => 'required|string|max:1000',
+        ]);
+
+        ResponseProgress::create([
+            'report_id' => $report->id,
+            'staff_id' => Auth::id(),
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('staff.reports.show', $report)->with('success', 'Progress berhasil ditambahkan.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function markAsCompleted(Report $report)
     {
-        //
-    }
+        $report->status = 'SELESAI';
+        $report->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('staff.reports.show', $report)->with('success', 'Laporan telah diselesaikan.');
     }
 }
+

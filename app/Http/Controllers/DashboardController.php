@@ -10,23 +10,79 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {
 
-    public function headDashboard()
+    public function userDashboard(Request $request)
     {
-        $totalUsers = User::where('role', 'user')->count();
-        $totalStaff = User::where('role', 'staff')->count();
-        $totalReports = Report::count();
-        $pendingReports = Report::where('status', 'PROSES')->count();
+        $query = Report::with(['user']) // Relasi ke user pelapor
+        ->withCount('likes');
 
-        $complaintsPerProvince = Report::select('province', DB::raw('count(*) as total'))
-            ->groupBy('province')
-            ->pluck('total', 'province');
+        if ($request->filled('search')) {
+            $query->where('description', 'like', '%' . $request->search . '%');
+        }
 
-        return view('dashboard.head.head', compact(
-            'totalUsers',
-            'totalStaff',
-            'totalReports',
-            'pendingReports',
-            'complaintsPerProvince'
-        ));
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+
+        $sortOrder = $request->get('sort', 'desc'); 
+        $query->orderBy('created_at', $sortOrder);
+
+        $reports = $query->paginate(10)->withQueryString();
+
+        return view('dashboard.user.user', compact('reports'));
     }
+
+
+    public function headDashboard()
+{
+    // Definisikan tipe laporan yang digunakan
+    $reportTypes = ['KEJAHATAN', 'PEMBANGUNAN', 'SOSIAL'];
+
+    // Query untuk laporan selesai
+    $completedReports = Report::where('status', 'SELESAI')
+        ->select('type', DB::raw('count(*) as total'))
+        ->groupBy('type')
+        ->pluck('total', 'type');
+
+    // Query untuk laporan belum selesai
+    $uncompletedReports = Report::where('status', '!=', 'SELESAI')
+        ->select('type', DB::raw('count(*) as total'))
+        ->groupBy('type')
+        ->pluck('total', 'type');
+
+    // Pastikan semua tipe ada di masing-masing array
+    foreach ($reportTypes as $type) {
+        if (!isset($completedReports[$type])) {
+            $completedReports[$type] = 0;
+        }
+        if (!isset($uncompletedReports[$type])) {
+            $uncompletedReports[$type] = 0;
+        }
+    }
+
+    $completedReports = collect($completedReports)->sortKeys();
+    $uncompletedReports = collect($uncompletedReports)->sortKeys();
+
+    $completedReportsByType = $completedReports;
+    $uncompletedReportsByType = $uncompletedReports;
+
+    $totalUsers = User::where('role', 'user')->count();
+    $totalStaff = User::where('role', 'staff')->count();
+    $totalReports = Report::count();
+    $onprogressReports = Report::where('status', 'PROSES')->count();
+    $complaintsPerProvince = Report::select('province', DB::raw('count(*) as total'))
+        ->groupBy('province')
+        ->pluck('total', 'province');
+
+    return view('dashboard.head.head', compact(
+        'totalUsers',
+        'totalStaff',
+        'totalReports',
+        'onprogressReports',
+        'complaintsPerProvince',
+        'completedReportsByType',
+        'uncompletedReportsByType',
+        'reportTypes'
+    ));
+}
+
 }

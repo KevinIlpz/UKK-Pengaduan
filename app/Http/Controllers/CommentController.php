@@ -1,64 +1,53 @@
 <?php
 
+// app/Http/Controllers/CommentController.php
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use App\Models\Comment;
+use App\Models\Report;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    use AuthorizesRequests;
+
+    public function store(Request $request, Report $report)
     {
-        //
+        $request->validate([
+            'content' => 'required|string|max:1000',
+        ]);
+
+        Comment::create([
+            'report_id' => $report->id,
+            'user_id' => auth()->id(),
+            'content' => $request->content,
+        ]);
+
+        return back()->with('success', 'Komentar berhasil dikirim!');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function update(Request $request, Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+    
+        $request->validate([
+            'content' => 'required|string|max:1000',
+        ]);
+    
+        $comment->update([
+            'content' => $request->content,
+        ]);
+    
+        return redirect()->back()->with('success', 'Komentar berhasil diperbarui.');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function destroy(Comment $comment)
     {
-        //
-    }
+        $this->authorize('delete', $comment); // <- error tadi muncul di sini
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $comment->delete();
+    
+        return back()->with('success', 'Komentar berhasil dihapus.');
     }
 }

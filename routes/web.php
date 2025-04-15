@@ -25,6 +25,26 @@ Route::middleware(['auth', 'verified', 'role:head_staff'])->group(function () {
     Route::delete('/head-staff/staff/{user}', [ManageStaffController::class, 'destroy'])->name('headstaff.staff.destroy');
 });
 
+Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
+    Route::get('/dashboard/user', [DashboardController::class, 'userDashboard'])->name('dashboard.user');
+
+    Route::get('/reports/create', [ReportController::class, 'create'])->name('user.reports.create');
+
+    Route::get('/reports/manage', [ReportController::class, 'manage'])->name('user.reports.manage');
+
+    Route::post('/reports', [ReportController::class, 'store'])->name('user.reports.store');
+    Route::get('/reports/{report}', [ReportController::class, 'show'])->name('user.reports.show');
+    Route::get('/reports/{report}/edit', [ReportController::class, 'edit'])->name('user.reports.edit');
+    Route::put('/reports/{report}', [ReportController::class, 'update'])->name('user.reports.update');
+    Route::delete('/reports/{report}', [ReportController::class, 'destroy'])->name('user.reports.destroy');
+    Route::post('/reports/{report}/like', [ReportController::class, 'toggleLike'])->name('user.reports.like');
+    Route::get('/{report}/view', [ReportController::class, 'view'])->name('user.reports.view');
+
+    Route::post('/reports/{report}/comments', [CommentController::class, 'store'])->name('user.comments.store');
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('user.comments.update');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('user.comments.destroy');
+});
+
 Route::get('/dashboard', function () {
     $user = Auth::user();
 

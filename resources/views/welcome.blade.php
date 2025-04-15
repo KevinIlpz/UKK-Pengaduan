@@ -43,7 +43,6 @@
     <div class="text-center mb-12">
       <h3 class="text-3xl font-bold">Laporan Publik Terkini</h3>
       <p class="text-gray-400 mt-2">Ikuti perkembangan laporan yang telah disampaikan oleh warga
-        fix github
       </p>
     </div>
 

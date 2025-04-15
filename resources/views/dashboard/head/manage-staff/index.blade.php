@@ -8,7 +8,6 @@
     <div class="py-6 bg-gray-900 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="space-y-8">
-                <!-- Success Message -->
                 @if(session('success'))
                     <div class="p-4 bg-gray-800 border border-emerald-500/30 rounded-xl text-emerald-400 text-sm">
                         {{ session('success') }}
@@ -71,18 +70,14 @@
                     </table>
                 </div>
 
-                <!-- Action Buttons & Pagination -->
                 <div class="flex flex-col-reverse sm:flex-row justify-between gap-6">
-                    <!-- Pagination -->
                     @if ($staff->hasPages())
                         <div class="flex-1">
                             {{ $staff->links('vendor.pagination.simple-dark') }}
                         </div>
                     @endif
 
-                    <!-- Action Buttons -->
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <!-- Tombol Tambah Staff -->
                         <a href="{{ route('headstaff.staff.create') }}"
                            class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 border border-blue-500 rounded-lg text-white transition-all duration-300
                                   flex items-center gap-2 justify-center

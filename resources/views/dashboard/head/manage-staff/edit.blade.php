@@ -1,13 +1,11 @@
 <x-app-layout>
     <div class="py-8 bg-gray-900 min-h-screen">
         <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Form Container -->
             <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-xl">
                 <form action="{{ route('headstaff.staff.update', $user) }}" method="POST" class="space-y-8">
                     @csrf
                     @method('PUT')
 
-                    <!-- Name Field -->
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-300">Nama Lengkap</label>
                         <input
@@ -21,7 +19,6 @@
                         >
                     </div>
 
-                    <!-- Email Field -->
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-300">Alamat Email</label>
                         <input
@@ -35,7 +32,6 @@
                         >
                     </div>
 
-                    <!-- Staff Province Field -->
                     <div class="space-y-2">
                         <label for="province" class="block text-sm font-medium text-gray-300">Provinsi Staff</label>
                         <select
@@ -48,9 +44,7 @@
                         </select>
                     </div>
 
-                    <!-- Password Group -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Password Field -->
                         <div class="space-y-2">
                             <label class="block text-sm font-medium text-gray-300">
                                 Password Baru <span class="text-gray-500">(opsional)</span>
@@ -64,7 +58,6 @@
                             >
                         </div>
 
-                        <!-- Confirm Password Field -->
                         <div class="space-y-2">
                             <label class="block text-sm font-medium text-gray-300">Konfirmasi Password</label>
                             <input
@@ -77,7 +70,6 @@
                         </div>
                     </div>
 
-                    <!-- Submit Button -->
                     <button
                         type="submit"
                         class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium
