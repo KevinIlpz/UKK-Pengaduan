@@ -42,7 +42,9 @@
   <section class="max-w-7xl mx-auto px-6 py-20">
     <div class="text-center mb-12">
       <h3 class="text-3xl font-bold">Laporan Publik Terkini</h3>
-      <p class="text-gray-400 mt-2">Ikuti perkembangan laporan yang telah disampaikan oleh warga</p>
+      <p class="text-gray-400 mt-2">Ikuti perkembangan laporan yang telah disampaikan oleh warga
+        fix github
+      </p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
