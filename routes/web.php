@@ -45,6 +45,18 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('user.comments.destroy');
 });
 
+Route::middleware(['auth', 'verified', 'role:staff'])->group(function () {
+    Route::get('/dashboard/staff/staff', [StaffDashboardController::class, 'index'])->name('dashboard.staff');
+    Route::post('/staff/reports/{report}/status', [StaffDashboardController::class, 'updateStatus'])->name('staff.reports.updateStatus');
+
+    Route::get('/staff/reports/export-all', [ExportReportController::class, 'exportAll'])->name('staff.reports.export.all');
+    Route::get('/staff/reports/{report}/export', [ExportReportController::class, 'exportSingle'])->name('staff.reports.export.single');
+
+    Route::get('/staff/reports/{report}', [StaffDashboardController::class, 'show'])->name('staff.reports.show');
+    Route::post('/staff/reports/{report}/progress', [StaffDashboardController::class, 'storeProgress'])->name('staff.reports.progress.store');
+    Route::post('/staff/reports/{report}/complete', [StaffDashboardController::class, 'markAsCompleted'])->name('staff.reports.complete');
+});
+
 Route::get('/dashboard', function () {
     $user = Auth::user();
 

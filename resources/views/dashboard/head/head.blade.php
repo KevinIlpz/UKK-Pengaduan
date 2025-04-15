@@ -81,53 +81,49 @@
     {{-- Chart.js --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Province Chart
-        const ctx = document.getElementById('provinceChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: {!! json_encode($complaintsPerProvince->keys()) !!},
-                datasets: [{
-                    label: 'Reports',
-                    data: {!! json_encode($complaintsPerProvince->values()) !!},
-                    backgroundColor: '#3B82F6',
-                    borderColor: '#1D4ED8',
-                    borderWidth: 1,
-                    borderRadius: 8,
-                    barPercentage: 0.7,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        backgroundColor: '#111827',
-                        titleColor: '#9CA3AF',
-                        bodyColor: '#E5E7EB',
-                        borderColor: '#374151',
-                        borderWidth: 1
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: '#374151' },
-                        ticks: { color: '#9CA3AF' }
-                    },
-                    x: {
-                        grid: { display: false },
-                        ticks: {
-                            color: '#9CA3AF',
-                            maxRotation: 45,
-                            minRotation: 45
-                        }
-                    }
-                }
-            }
-        });
 
+        const labels = {!! json_encode($complaintsPerProvince->keys()) !!};
+    const data = {!! json_encode($complaintsPerProvince->values()) !!};
+
+    function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+const backgroundColors = labels.map(() => getRandomColor());
+
+const ctx = document.getElementById('provinceChart').getContext('2d');
+new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Reports',
+            data: data,
+            backgroundColor: backgroundColors,
+            borderColor: '#1D4ED8',
+            borderWidth: 1,
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: true },
+            tooltip: {
+                backgroundColor: '#111827',
+                titleColor: '#9CA3AF',
+                bodyColor: '#E5E7EB',
+                borderColor: '#374151',
+                borderWidth: 1
+            }
+        }
+    }
+});
         
 
     const ctxCompleted = document.getElementById('completedChart').getContext('2d');
