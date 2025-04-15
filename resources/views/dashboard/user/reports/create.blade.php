@@ -1,5 +1,4 @@
 <x-app-layout>
-    <!-- Header Area with Minimalist Navigation -->
     <header class="bg-gray-800 py-4 border-b border-gray-700">
         <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
             <h1 class="text-2xl font-bold text-white">Laporan Baru</h1>
@@ -12,7 +11,6 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="bg-gray-900 min-h-screen py-10">
         <div class="max-w-4xl mx-auto px-4">
             <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden">
@@ -23,11 +21,9 @@
                     <p class="mt-2 text-sm text-gray-400">Lengkapi data di bawah ini untuk mengirimkan laporan Anda.</p>
                 </div>
 
-                <!-- Form Section -->
                 <form action="{{ route('user.reports.store') }}" method="POST" enctype="multipart/form-data" class="px-6 py-8 space-y-6">
                     @csrf
 
-                    <!-- Deskripsi Laporan -->
                     <div>
                         <label for="description" class="block text-sm font-medium text-gray-300">Deskripsi Laporan</label>
                         <div class="mt-1">
@@ -36,7 +32,6 @@
                         <p class="mt-2 text-xs text-gray-500">Jelaskan detail pengaduan Anda.</p>
                     </div>
 
-                    <!-- Jenis Laporan -->
                     <div>
                         <label for="type" class="block text-sm font-medium text-gray-300">Jenis Laporan</label>
                         <select id="type" name="type" class="mt-1 block w-full py-2 pl-3 pr-10 text-base bg-gray-700 border border-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
@@ -46,35 +41,29 @@
                         </select>
                     </div>
 
-                    <!-- Wilayah Section -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="province" class="block text-sm font-medium text-gray-300">Provinsi</label>
                             <select id="province" name="province" class="mt-1 block w-full py-2 pl-3 pr-10 bg-gray-700 text-white border border-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                <!-- Options fetched from API -->
                             </select>
                         </div>
                         <div>
                             <label for="regency" class="block text-sm font-medium text-gray-300">Kabupaten/Kota</label>
                             <select id="regency" name="regency" class="mt-1 block w-full py-2 pl-3 pr-10 bg-gray-700 text-white border border-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                <!-- Options fetched from API -->
                             </select>
                         </div>
                         <div>
                             <label for="subdistrict" class="block text-sm font-medium text-gray-300">Kecamatan</label>
                             <select id="subdistrict" name="subdistrict" class="mt-1 block w-full py-2 pl-3 pr-10 bg-gray-700 text-white border border-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                <!-- Options fetched from API -->
                             </select>
                         </div>
                         <div>
                             <label for="village" class="block text-sm font-medium text-gray-300">Kelurahan/Desa</label>
                             <select id="village" name="village" class="mt-1 block w-full py-2 pl-3 pr-10 bg-gray-700 text-white border border-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                <!-- Options fetched from API -->
                             </select>
                         </div>
                     </div>
 
-                    <!-- Upload Gambar with Preview -->
                     <div>
                         <label class="block text-sm font-medium text-gray-300">Upload Gambar</label>
                         <div class="mt-3 flex flex-col items-center justify-center px-6 pt-5 pb-6 border-2 border-dashed border-gray-700 rounded-md bg-gray-800">
@@ -91,7 +80,6 @@
                                 </div>
                                 <p class="text-xs text-gray-500">PNG, JPG, GIF maksimal 2MB</p>
                             </div>
-                            <!-- Image Preview Container -->
                             <div id="image-preview-container" class="mt-4 hidden">
                                 <p class="text-sm text-gray-300 mb-2">Preview:</p>
                                 <img id="image-preview" class="max-h-64 rounded-md shadow-md" alt="Preview Image">
@@ -99,7 +87,6 @@
                         </div>
                     </div>
 
-                    <!-- Submit Button Positioned at Center -->
                     <div class="flex justify-center pt-4">
                         <button type="submit" class="flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-gray-900 bg-indigo-400 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 transition">
                             <svg class="-ml-1 mr-2 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -113,9 +100,7 @@
         </div>
     </main>
 
-    <!-- JavaScript to Fetch Wilayah Data and Handle Image Preview -->
     <script>
-        // Fetch wilayah menggunakan API EMSIFA
         async function fetchWilayah(endpoint, targetSelect, parentId = null) {
             const url = parentId
                 ? `https://www.emsifa.com/api-wilayah-indonesia/api/${endpoint}/${parentId}.json`
@@ -162,7 +147,6 @@
                 }
             });
 
-            // Image preview functionality
             const imageInput = document.getElementById('image');
             const previewContainer = document.getElementById('image-preview-container');
             const previewImage = document.getElementById('image-preview');

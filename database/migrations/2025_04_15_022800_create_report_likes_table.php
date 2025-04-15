@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignId('report_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-    
-            $table->unique(['report_id', 'user_id']); // agar tidak bisa like dua kali
+
+            $table->unique(['report_id', 'user_id']); 
         });
     }
-    
+
 
     /**
      * Reverse the migrations.

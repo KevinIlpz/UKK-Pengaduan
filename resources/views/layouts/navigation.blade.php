@@ -1,16 +1,13 @@
 <nav x-data="{ open: false }" class="bg-gray-900 shadow-xl">
     <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
-            <!-- Left: Logo & Desktop Nav -->
             <div class="flex items-center flex-1">
-                <!-- Logo -->
                 <div class="flex-shrink-0">
                     <a href="{{ route('dashboard') }}" class="flex items-center space-x-2">
                         <span class="text-xl font-light text-white tracking-tight hidden lg:inline">Pengaduan</span>
                     </a>
                 </div>
 
-                <!-- Desktop Navigation -->
                 <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                     @if (Auth::user()->role === 'user')
                         <x-nav-link :href="route('dashboard.user')"
@@ -39,9 +36,7 @@
                 </div>
             </div>
 
-            <!-- Right: User Controls -->
             <div class="absolute right-0 flex items-center space-x-4">
-                <!-- User Dropdown -->
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center focus:outline-none">

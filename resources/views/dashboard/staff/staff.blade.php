@@ -6,9 +6,7 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <!-- Header Section -->
         <div class="flex flex-col lg:flex-row justify-between gap-6 mb-8">
-            <!-- Welcome Card -->
             <div class="bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl p-6 flex-1 border border-gray-700">
                 <div class="flex justify-between items-center">
                     <div>
@@ -23,45 +21,39 @@
                 </div>
             </div>
 
-            <!-- Export Button -->
-            <!-- Export Buttons Vertical Small Layout -->
-<div class="flex flex-col items-start space-y-3">
-    <a href="{{ route('staff.reports.export.all') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
-        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-        </svg>
-        Export All Data
-    </a>
-    <a href="{{ route('staff.reports.export.month') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
-        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-        </svg>
-        Export 1 Bulan
-    </a>
-    <a href="{{ route('staff.reports.export.week') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
-        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-        </svg>
-        Export 1 Minggu
-    </a>
-</div>
+    <div class="flex flex-col items-start space-y-3">
+        <a href="{{ route('staff.reports.export.all') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
+            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Export All Data
+        </a>
+        <a href="{{ route('staff.reports.export.month') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
+            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Export 1 Bulan
+        </a>
+        <a href="{{ route('staff.reports.export.week') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
+            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Export 1 Minggu
+        </a>
+    </div>
 
-        </div>
+    </div>
 
-        <!-- Reports Section -->
         <div class="space-y-6">
-            <!-- Status Messages -->
             @if (session('success'))
             <div class="p-4 bg-gray-800 border border-emerald-500/30 rounded-xl text-emerald-400 text-sm">
                 {{ session('success') }}
             </div>
             @endif
 
-            <!-- Reports Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 @foreach ($reports as $report)
                 <div class="bg-gray-800 rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-200">
-                    <!-- Report Image -->
                     <div class="h-48 bg-gray-900 rounded-t-xl flex items-center justify-center overflow-hidden">
                         @if ($report->image)
                         <img src="{{ asset('storage/' . $report->image) }}" class="w-full h-full object-cover">
@@ -72,9 +64,7 @@
                         @endif
                     </div>
 
-                    <!-- Report Content -->
                     <div class="p-5 space-y-4">
-                        <!-- Status Badges -->
                         <div class="flex justify-between items-center">
                             <span class="px-3 py-1 text-sm rounded-full bg-gray-700 text-blue-400">
                                 {{ $report->type }}
@@ -88,13 +78,11 @@
                         </span>
                         </div>
 
-                        <!-- Report Details -->
                         <div class="space-y-2">
                             <h4 class="text-lg font-semibold text-gray-100">{{ Str::limit($report->title, 50) }}</h4>
                             <p class="text-gray-400 text-sm leading-relaxed">{{ Str::limit($report->description, 100) }}</p>
                         </div>
 
-                        <!-- Action Buttons -->
                         <div class="flex justify-between items-center pt-4">
                             @if ($report->status == 'PROSES')
                             <button onclick="showModal({{ $report->id }})"
@@ -113,7 +101,7 @@
                                 <span class="text-sm">Export</span>
                             </a>
 
-                        
+
                         </div>
                     </div>
                 </div>
@@ -122,7 +110,6 @@
         </div>
     </div>
 
-    <!-- Action Modal -->
     <div id="modal" class="hidden fixed inset-0 bg-gray-900/80 backdrop-blur-sm flex items-center justify-center z-50">
         <div class="bg-gray-800 rounded-xl border border-gray-700 w-full max-w-md mx-4">
             <div class="p-6 border-b border-gray-700">
@@ -159,9 +146,9 @@
                     </button>
                 </div>
             </form>
-            
+
         </div>
-        
+
     </div>
 
     <script>

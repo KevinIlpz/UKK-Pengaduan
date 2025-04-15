@@ -14,7 +14,6 @@
                     </div>
                 @endif
 
-                <!-- Staff Table -->
                 <div class="border border-gray-800 rounded-xl overflow-hidden">
                     <table class="min-w-full divide-y divide-gray-800">
                         <thead class="bg-gray-850">

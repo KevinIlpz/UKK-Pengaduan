@@ -1,9 +1,7 @@
 <x-app-layout>
 
     <div class="flex flex-col lg:flex-row gap-8 bg-gray-950 min-h-screen p-6">
-        {{-- Left Sidebar --}}
         <div class="w-full lg:w-80 space-y-6">
-            {{-- User Card --}}
             <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
                 <div class="flex items-center gap-4">
                     <div class="bg-blue-500/20 p-3 rounded-lg">
@@ -24,7 +22,6 @@
                 </div>
             </div>
 
-            {{-- Quick Stats --}}
             <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 space-y-6">
                 <div class="border-t border-gray-800 pt-6">
                     <div class="flex justify-between items-center">
@@ -53,9 +50,7 @@
             </div>
         </div>
 
-        {{-- Main Content --}}
         <div class="flex-1 space-y-6">
-            {{-- Chart Section --}}
             <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-lg font-semibold text-white">Regional Report Distribution</h3>
@@ -67,8 +62,7 @@
                     <canvas id="provinceChart" class="w-full h-full"></canvas>
                 </div>
             </div>
-            
-            {{-- Completed vs Uncompleted Chart --}}
+
             <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
                 <h3 class="text-lg font-semibold text-white mb-6">Laporan Selesai vs Belum per Tipe</h3>
                 <div class="h-[25rem] w-full">
@@ -78,7 +72,6 @@
         </div>
     </div>
 
-    {{-- Chart.js --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
 
@@ -96,18 +89,18 @@
 
 const backgroundColors = labels.map(() => getRandomColor());
 
-const ctx = document.getElementById('provinceChart').getContext('2d');
-new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Reports',
-            data: data,
-            backgroundColor: backgroundColors,
-            borderColor: '#1D4ED8',
-            borderWidth: 1,
-        }]
+    const ctx = document.getElementById('provinceChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Reports',
+                data: data,
+                backgroundColor: backgroundColors,
+                borderColor: '#1D4ED8',
+                borderWidth: 1,
+     }]
     },
     options: {
         responsive: true,
@@ -123,8 +116,8 @@ new Chart(ctx, {
             }
         }
     }
-});
-        
+    });
+
 
     const ctxCompleted = document.getElementById('completedChart').getContext('2d');
 

@@ -49,10 +49,10 @@ class ReportController extends Controller
 
     public function show(Report $report)
     {
-        $report->load(['user', 'likes', 'comments.user', 'progress.staff']); // Tambahkan progress
+        $report->load(['user', 'likes', 'comments.user', 'progress.staff']);
         $report->increment('views');
 
-        $comments = $report->comments()->latest()->paginate(5); // atau sesuai jumlah yang kamu mau
+        $comments = $report->comments()->latest()->paginate(5);
         return view('dashboard.user.reports.show', compact('report', 'comments'));
     }
 

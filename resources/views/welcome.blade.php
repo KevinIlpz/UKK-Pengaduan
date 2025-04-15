@@ -12,7 +12,6 @@
 </head>
 <body class="bg-gray-950 text-gray-100">
 
-  <!-- Header -->
   <header class="bg-gray-900 shadow-md">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold text-white tracking-wide">📢 Suara Warga</h1>
@@ -38,7 +37,6 @@
     </div>
   </section>
 
-  <!-- Laporan Terbaru -->
   <section class="max-w-7xl mx-auto px-6 py-20">
     <div class="text-center mb-12">
       <h3 class="text-3xl font-bold">Laporan Publik Terkini</h3>
@@ -75,7 +73,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="py-6 bg-gray-900 border-t border-gray-800">
     <div class="container mx-auto px-4 text-center">
       <p class="text-gray-500 text-sm">&copy; {{ date('Y') }} Suara Warga. Semua hak dilindungi.</p>

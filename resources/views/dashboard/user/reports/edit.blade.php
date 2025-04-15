@@ -13,7 +13,6 @@
 
     <main class="min-h-screen bg-gray-800 text-white py-10">
       <div class="max-w-3xl mx-auto px-6 space-y-8">
-        <!-- Form Card -->
         <section class="bg-gray-800 border border-gray-700 rounded-lg shadow p-6">
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold">Edit Laporanmu</h2>
@@ -27,13 +26,11 @@
             @csrf
             @method('PUT')
 
-            <!-- Report Description -->
             <div>
               <label for="description" class="block text-sm font-medium text-gray-300">Deskripsi Laporanmu</label>
               <textarea id="description" name="description" rows="4" class="mt-1 w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-indigo-500 focus:border-indigo-500">{{ old('description', $report->description) }}</textarea>
             </div>
 
-            <!-- Report Category -->
             <div>
               <label for="type" class="block text-sm font-medium text-gray-300">Kategori</label>
               <select id="type" name="type" class="mt-1 w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500">
@@ -43,7 +40,6 @@
               </select>
             </div>
 
-            <!-- Location Dropdowns -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="province" class="block text-sm font-medium text-gray-300">Province</label>
@@ -63,7 +59,6 @@
               </div>
             </div>
 
-            <!-- Current Image -->
             <div>
               <label class="block text-sm font-medium text-gray-300">Current Image</label>
               @if($report->image)
@@ -75,7 +70,6 @@
               @endif
             </div>
 
-            <!-- Upload New Image -->
             <div>
               <label for="image" class="block text-sm font-medium text-gray-300">Upload New Image (optional)</label>
               <div class="mt-2 flex justify-center px-4 py-6 border-2 border-dashed border-gray-600 rounded-md bg-gray-700">
@@ -99,7 +93,6 @@
       </div>
     </main>
 
-    <!-- JavaScript for Regional API -->
     <script>
       const selectedProvince = @json($report->province);
       const selectedRegency = @json($report->regency);

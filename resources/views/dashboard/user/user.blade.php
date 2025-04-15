@@ -10,7 +10,6 @@
 
     <div class="min-h-screen bg-gray-900 py-10 px-4 md:px-8">
         <div class="max-w-7xl mx-auto space-y-12">
-            <!-- Welcome Section -->
             <div class="flex flex-col md:flex-row items-center justify-between bg-gray-800 rounded-xl p-8 border border-gray-700 shadow-lg">
                 <div class="flex flex-col space-y-2">
                     <span class="text-lg text-gray-300">Halo,</span>
@@ -28,7 +27,6 @@
                 </div>
             </div>
 
-            <!-- Filter/Search Section -->
             <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-md">
                 <form method="GET" action="{{ route('dashboard.user') }}">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -66,7 +64,6 @@
                 </form>
             </div>
 
-            <!-- Reports Section -->
             <div class="space-y-8">
                 <div class="flex items-center mb-4">
                     <div class="w-1 h-10 bg-indigo-500 mr-3 rounded-full"></div>

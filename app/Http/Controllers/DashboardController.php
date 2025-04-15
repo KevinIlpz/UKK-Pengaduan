@@ -12,7 +12,7 @@ class DashboardController extends Controller
 
     public function userDashboard(Request $request)
     {
-        $query = Report::with(['user']) // Relasi ke user pelapor
+        $query = Report::with(['user'])
         ->withCount('likes');
 
         if ($request->filled('search')) {
@@ -23,7 +23,7 @@ class DashboardController extends Controller
             $query->where('type', $request->type);
         }
 
-        $sortOrder = $request->get('sort', 'desc'); 
+        $sortOrder = $request->get('sort', 'desc');
         $query->orderBy('created_at', $sortOrder);
 
         $reports = $query->paginate(10)->withQueryString();
@@ -34,22 +34,18 @@ class DashboardController extends Controller
 
     public function headDashboard()
 {
-    // Definisikan tipe laporan yang digunakan
     $reportTypes = ['KEJAHATAN', 'PEMBANGUNAN', 'SOSIAL'];
 
-    // Query untuk laporan selesai
     $completedReports = Report::where('status', 'SELESAI')
         ->select('type', DB::raw('count(*) as total'))
         ->groupBy('type')
         ->pluck('total', 'type');
 
-    // Query untuk laporan belum selesai
     $uncompletedReports = Report::where('status', '!=', 'SELESAI')
         ->select('type', DB::raw('count(*) as total'))
         ->groupBy('type')
         ->pluck('total', 'type');
 
-    // Pastikan semua tipe ada di masing-masing array
     foreach ($reportTypes as $type) {
         if (!isset($completedReports[$type])) {
             $completedReports[$type] = 0;

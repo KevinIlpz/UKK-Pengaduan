@@ -8,7 +8,6 @@
 </head>
 <body class="bg-white min-h-screen flex">
 
-    <!-- Left: Illustration or Image -->
     <div class="hidden md:flex w-1/2 bg-gradient-to-tr from-indigo-400 to-blue-500 items-center justify-center p-10">
         <div class="text-white text-center max-w-md">
             <h2 class="text-3xl font-bold mb-4">Selamat Datang Kembali!</h2>
@@ -16,7 +15,6 @@
         </div>
     </div>
 
-    <!-- Right: Login Form -->
     <div class="w-full md:w-1/2 flex items-center justify-center p-8">
         <div class="w-full max-w-md space-y-6">
             <div class="text-center">
@@ -33,7 +31,6 @@
             <form method="POST" action="{{ route('login') }}" class="space-y-5">
                 @csrf
 
-                <!-- Email -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                     <input id="email" name="email" type="email" required autofocus
@@ -44,7 +41,7 @@
                     @enderror
                 </div>
 
-                <!-- Password -->
+
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
                     <input id="password" name="password" type="password" required
@@ -55,7 +52,6 @@
                     @enderror
                 </div>
 
-                <!-- Options -->
                 <div class="flex items-center justify-between">
                     <label class="inline-flex items-center text-sm text-gray-600">
                         <input type="checkbox" name="remember"
@@ -64,7 +60,6 @@
                     </label>
                 </div>
 
-                <!-- Submit -->
                 <button type="submit"
                     class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-medium shadow-sm transition">
                     Masuk

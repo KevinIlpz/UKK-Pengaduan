@@ -30,24 +30,23 @@ class CommentController extends Controller
     public function update(Request $request, Comment $comment)
     {
         $this->authorize('update', $comment);
-    
+
         $request->validate([
             'content' => 'required|string|max:1000',
         ]);
-    
+
         $comment->update([
             'content' => $request->content,
         ]);
-    
+
         return redirect()->back()->with('success', 'Komentar berhasil diperbarui.');
     }
-    
+
     public function destroy(Comment $comment)
     {
-        $this->authorize('delete', $comment); // <- error tadi muncul di sini
-
+        $this->authorize('delete', $comment); 
         $comment->delete();
-    
+
         return back()->with('success', 'Komentar berhasil dihapus.');
     }
 }

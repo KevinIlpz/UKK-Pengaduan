@@ -14,7 +14,7 @@ class SingleReportExport implements FromArray, WithHeadings
 
     public function __construct(Report $report)
     {
-        $this->report = $report->load('user', 'responseProgress.staff'); // pastikan relasi staff
+        $this->report = $report->load('user', 'responseProgress.staff'); 
     }
 
     public function array(): array

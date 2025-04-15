@@ -10,17 +10,14 @@
 
     <div class="w-full max-w-md bg-white rounded-xl shadow-lg border border-gray-200 p-8 animate-fade-in">
 
-        <!-- Branding -->
         <div class="mb-6 text-center">
             <h1 class="text-2xl font-bold text-gray-800">Register</h1>
             <p class="text-sm text-gray-500">Buat akun baru untuk mengakses dashboard</p>
         </div>
 
-        <!-- Register Form -->
         <form method="POST" action="{{ route('register') }}" class="space-y-5">
             @csrf
 
-            <!-- Name -->
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
                 <input id="name" type="text" name="name" :value="old('name')" required autofocus
@@ -31,7 +28,6 @@
                 @enderror
             </div>
 
-            <!-- Email -->
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input id="email" type="email" name="email" :value="old('email')" required
@@ -42,7 +38,6 @@
                 @enderror
             </div>
 
-            <!-- Password -->
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                 <input id="password" type="password" name="password" required
@@ -53,7 +48,6 @@
                 @enderror
             </div>
 
-            <!-- Confirm Password -->
             <div>
                 <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
                 <input id="password_confirmation" type="password" name="password_confirmation" required
@@ -61,7 +55,6 @@
                     placeholder="Ulangi password">
             </div>
 
-            <!-- Submit Button -->
             <div>
                 <button type="submit"
                     class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md shadow-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-1">
@@ -69,7 +62,6 @@
                 </button>
             </div>
 
-            <!-- Login Link -->
             <p class="text-center text-sm text-gray-600 mt-4">
                 Sudah punya akun?
                 <a href="{{ route('login') }}" class="text-indigo-600 hover:underline">Masuk di sini</a>

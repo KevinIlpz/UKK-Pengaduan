@@ -9,7 +9,6 @@
     <div class="bg-gray-800 py-10">
         <div class="max-w-6xl mx-auto px-4 space-y-10">
 
-            <!-- Filter Section -->
             <div class="bg-gray-900 p-6 rounded-xl shadow border border-gray-800">
                 <form action="{{ route('user.reports.manage') }}" method="GET" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
@@ -40,7 +39,6 @@
                 </form>
             </div>
 
-            <!-- Report Section -->
             @forelse ($reports as $date => $groupedReports)
                 <div class="bg-gray-900 rounded-xl shadow border border-gray-800">
                     <div class="px-6 py-4 border-b border-gray-800">
@@ -49,14 +47,12 @@
 
                     @foreach ($groupedReports as $report)
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 py-6 border-b border-gray-800">
-                            <!-- Deskripsi -->
                             <div class="space-y-2 text-sm text-gray-300">
                                 <p><span class="font-semibold text-white">Tipe:</span> {{ $report->type }}</p>
                                 <p><span class="font-semibold text-white">Lokasi:</span> {{ strtoupper("{$report->province}, {$report->regency}, {$report->subdistrict}, {$report->village}") }}</p>
                                 <p><span class="font-semibold text-white">Deskripsi:</span> {{ $report->description }}</p>
                             </div>
 
-                            <!-- Gambar -->
                             <div class="flex justify-center items-center">
                                 @if ($report->image)
                                     <img src="{{ asset('storage/' . $report->image) }}" class="rounded-lg object-cover max-h-40 w-full border border-gray-700">
@@ -65,7 +61,6 @@
                                 @endif
                             </div>
 
-                            <!-- Status & Aksi -->
                             <div class="flex flex-col justify-between items-end">
                                 <div>
                                     <span class="px-3 py-1 text-xs font-semibold rounded-full
@@ -97,7 +92,7 @@
                 </div>
             @empty
                 <div class="text-center text-gray-400 bg-gray-900 py-12 rounded-xl border border-gray-800 shadow">
-                    Belum ada laporan milikmu 😅
+                    Belum ada laporan milikmu nih 😅
                 </div>
             @endforelse
         </div>

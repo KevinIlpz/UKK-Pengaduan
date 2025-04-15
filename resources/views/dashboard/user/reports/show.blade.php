@@ -12,7 +12,6 @@
 
     <div class="bg-gray-800 py-8">
         <div class="max-w-4xl mx-auto px-4 space-y-8">
-            <!-- Gambar -->
             <div class="rounded-xl overflow-hidden shadow-lg border border-gray-800 bg-gray-900">
                 @if ($report->image)
                     <img src="{{ asset('storage/' . $report->image) }}" class="w-full object-cover max-h-96" alt="Gambar Laporan">
@@ -23,7 +22,6 @@
                 @endif
             </div>
 
-            <!-- Informasi Utama -->
             <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow">
                 <h3 class="text-xl font-bold text-white mb-4">{{ $report->type }}</h3>
                 <p class="text-gray-300 mb-6">{{ $report->description }}</p>
@@ -52,7 +50,6 @@
                     </div>
                 </div>
 
-                <!-- Tombol Like -->
                 <div class="mt-6">
                     <form action="{{ route('user.reports.like', $report->id) }}" method="POST">
                         @csrf
@@ -68,7 +65,6 @@
                 </div>
             </div>
 
-            <!-- Progress Penanganan -->
             @if ($report->progress->isNotEmpty())
                 <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow">
                     <h3 class="text-lg font-semibold text-white mb-4">Progress Penanganan</h3>
@@ -84,11 +80,9 @@
                 </div>
             @endif
 
-            <!-- Komentar -->
             <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow">
                 <h3 class="text-lg font-semibold text-white mb-4">Komentar</h3>
 
-                <!-- Form Komentar -->
                 <form method="POST" action="{{ route('user.comments.store', $report->id) }}">
                     @csrf
                     <textarea name="content" rows="3" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Tulis komentar...">{{ old('content') }}</textarea>
@@ -100,7 +94,6 @@
                     </div>
                 </form>
 
-                <!-- List Komentar -->
                 <div class="mt-6 space-y-6">
                     @forelse ($comments as $comment)
                         <div class="border-b border-gray-700 pb-4">
@@ -121,7 +114,6 @@
                             </div>
                             <p class="text-sm text-gray-300 mt-2">{{ $comment->content }}</p>
 
-                            <!-- Form Edit -->
                             <div id="edit-{{ $comment->id }}" class="mt-3 hidden">
                                 <form method="POST" action="{{ route('user.comments.update', $comment) }}" class="space-y-2">
                                     @csrf
@@ -139,7 +131,6 @@
                     @endforelse
                 </div>
 
-                <!-- Pagination -->
                 <div class="mt-6">
                     {{ $comments->links() }}
                 </div>

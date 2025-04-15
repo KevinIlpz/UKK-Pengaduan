@@ -6,7 +6,6 @@
     </x-slot>
 
     <div class="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-8">
-        <!-- Navigation Header -->
         <div class="flex justify-between items-start mb-8">
             <a href="{{ route('dashboard.staff') }}" class="group flex items-center text-gray-400 hover:text-gray-200 transition-colors">
                 <svg class="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -17,11 +16,8 @@
             <span class="text-sm text-gray-400">ID Laporan: #{{ $report->id }}</span>
         </div>
 
-        <!-- Main Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Report Details -->
             <div class="lg:col-span-2 space-y-8">
-                <!-- Report Card -->
                 <div class="bg-gray-800 rounded-2xl border border-gray-700 p-6 shadow-xl">
                     <div class="pb-4 border-b border-gray-700">
                         <h1 class="text-3xl font-bold text-gray-100">{{ $report->title }}</h1>
@@ -56,7 +52,6 @@
                     </div>
                 </div>
 
-                <!-- Progress Timeline -->
                 <div class="bg-gray-800 rounded-2xl border border-gray-700 p-6">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-xl font-semibold text-gray-100">Histori Progress</h3>
@@ -91,10 +86,8 @@
                 </div>
             </div>
 
-            <!-- Action Sidebar -->
             <div class="space-y-8">
                 @if ($report->status !== 'SELESAI')
-                <!-- Progress Form -->
                 <div class="bg-gray-800 rounded-2xl border border-gray-700 p-6">
                     <h3 class="text-lg font-semibold text-gray-100 mb-6">Tambah Progress</h3>
                     <form action="{{ route('staff.reports.progress.store', $report) }}" method="POST" class="space-y-6">
@@ -112,7 +105,6 @@
                     </form>
                 </div>
 
-                <!-- Complete Report -->
                 <form action="{{ route('staff.reports.complete', $report) }}" method="POST"
                       onsubmit="return confirm('Konfirmasi penyelesaian laporan?')"
                       class="bg-gray-800 rounded-2xl border border-gray-700 p-6">

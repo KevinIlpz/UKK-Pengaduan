@@ -47,12 +47,12 @@ class Report extends Model
     {
         return $this->hasMany(ReportLike::class);
     }
-    
+
     public function isLikedBy(User $user)
     {
         return $this->likes()->where('user_id', $user->id)->exists();
     }
-    
+
     public function progress()
     {
         return $this->hasMany(ResponseProgress::class);
@@ -60,7 +60,7 @@ class Report extends Model
 
     public function handledBy()
     {
-        return $this->belongsTo(User::class, 'handled_by'); // 'handled_by' itu nama kolom yang menyimpan ID staff
+        return $this->belongsTo(User::class, 'handled_by'); 
     }
 
     public function responseProgress()

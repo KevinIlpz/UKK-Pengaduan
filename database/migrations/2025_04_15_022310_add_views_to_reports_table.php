@@ -9,7 +9,6 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-        // database/migrations/xxxx_xx_xx_change_voting_column_type_on_reports_table.php
         public function up(): void
 {
     Schema::table('reports', function (Blueprint $table) {
