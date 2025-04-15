@@ -7,6 +7,7 @@ use App\Http\Controllers\User\ReportController;
 use App\Http\Controllers\HeadStaff\ManageStaffController;
 use App\Http\Controllers\HeadStaff\HeadStaffDashboardController;
 use App\Http\Controllers\Staff\StaffDashboardController;
+use App\Http\Controllers\Staff\ExportReportController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,8 @@ Route::middleware(['auth', 'verified', 'role:head_staff'])->group(function () {
     Route::get('/head-staff/staff/{user}/edit', [ManageStaffController::class, 'edit'])->name('headstaff.staff.edit');
     Route::put('/head-staff/staff/{user}', [ManageStaffController::class, 'update'])->name('headstaff.staff.update');
     Route::delete('/head-staff/staff/{user}', [ManageStaffController::class, 'destroy'])->name('headstaff.staff.destroy');
+
+    Route::get('/head-staff/staff/export', [ManageStaffController::class, 'export'])->name('headstaff.staff.export');
 });
 
 Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
@@ -50,6 +53,8 @@ Route::middleware(['auth', 'verified', 'role:staff'])->group(function () {
     Route::post('/staff/reports/{report}/status', [StaffDashboardController::class, 'updateStatus'])->name('staff.reports.updateStatus');
 
     Route::get('/staff/reports/export-all', [ExportReportController::class, 'exportAll'])->name('staff.reports.export.all');
+    Route::get('/staff/reports/export/month', [ExportReportController::class, 'exportLastMonth'])->name('staff.reports.export.month');
+Route::get('/staff/reports/export/week', [ExportReportController::class, 'exportLastWeek'])->name('staff.reports.export.week');
     Route::get('/staff/reports/{report}/export', [ExportReportController::class, 'exportSingle'])->name('staff.reports.export.single');
 
     Route::get('/staff/reports/{report}', [StaffDashboardController::class, 'show'])->name('staff.reports.show');

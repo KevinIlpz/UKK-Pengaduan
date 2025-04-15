@@ -24,14 +24,28 @@
             </div>
 
             <!-- Export Button -->
-            <div class="flex items-center">
-                <a href="{{ route('staff.reports.export.all') }}" class="h-full flex items-center px-6 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl text-gray-300 hover:text-white transition-all duration-300">
-                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                    </svg>
-                    Export All Data
-                </a>
-            </div>
+            <!-- Export Buttons Vertical Small Layout -->
+<div class="flex flex-col items-start space-y-3">
+    <a href="{{ route('staff.reports.export.all') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
+        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Export All Data
+    </a>
+    <a href="{{ route('staff.reports.export.month') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
+        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Export 1 Bulan
+    </a>
+    <a href="{{ route('staff.reports.export.week') }}" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-300 text-sm">
+        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Export 1 Minggu
+    </a>
+</div>
+
         </div>
 
         <!-- Reports Section -->
@@ -98,6 +112,8 @@
                                 </svg>
                                 <span class="text-sm">Export</span>
                             </a>
+
+                        
                         </div>
                     </div>
                 </div>
@@ -143,7 +159,9 @@
                     </button>
                 </div>
             </form>
+            
         </div>
+        
     </div>
 
     <script>
