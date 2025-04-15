@@ -12,6 +12,30 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                    @if (Auth::user()->role === 'user')
+                        <x-nav-link :href="route('dashboard.user')"
+                                  :active="request()->routeIs('dashboard.user')"
+                                  class="text-white hover:text-white hover:border-b-2 hover:border-white-300">
+                            Overview
+                        </x-nav-link>
+                    @elseif (Auth::user()->role === 'staff')
+                        <x-nav-link :href="route('dashboard.staff')"
+                                  :active="request()->routeIs('dashboard.staff')"
+                                  class="text-white hover:text-white hover:border-b-2 hover:border-white-300">
+                            Cases
+                        </x-nav-link>
+                    @elseif (Auth::user()->role === 'head_staff')
+                        <x-nav-link :href="route('dashboard.head')"
+                                  :active="request()->routeIs('dashboard.head')"
+                                  class="text-white hover:text-white hover:border-b-2 hover:border-white-300">
+                            Dashboard
+                        </x-nav-link>
+                        <x-nav-link :href="route('headstaff.staff.index')"
+                                  :active="request()->routeIs('headstaff.staff.*')"
+                                  class="text-white hover:text-white hover:border-b-2 hover:border-white-300">
+                            Team
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
